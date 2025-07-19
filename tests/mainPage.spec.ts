@@ -10,6 +10,8 @@ interface Elements {
   };
 }
 
+const lightMods = ['light', 'dark'];
+
 const elements: Elements[] = [
   {
     locator: (page: Page): Locator =>
@@ -129,5 +131,13 @@ test.describe('тесты главной страницы', () => {
   test('Проверка переключения лайт мода', async ({ page }) => {
     await page.getByLabel('Switch between dark and light').click();
     await expect.soft(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  });
+  lightMods.forEach((value) => {
+    test(`Проверка стилей активного ${value} мода`, async ({ page }) => {
+      await page.evaluate((value) => {
+        document.querySelector('html')?.setAttribute('data-theme', value);
+      }, value);
+      await expect(page).toHaveScreenshot(`pageWith${value}Moge.png`);
+    });
   });
 });
