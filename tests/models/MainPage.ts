@@ -145,9 +145,9 @@ export class MainPage {
     });
   }
   async checkLayoutWithLightMode() {
-    await expect(this.page).toHaveScreenshot(`pageWithLightMoge.png`);
+    await expect(this.page).toHaveScreenshot(`pageWithLightMode.png`);
   }
   async checkLayoutWithDarkMode() {
-    await expect(this.page).toHaveScreenshot(`pageWithDarkMoge.png`);
+    await expect(this.page).toHaveScreenshot(`pageWithDarkMode.png`);
   }
 }
